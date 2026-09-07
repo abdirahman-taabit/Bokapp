@@ -29,6 +29,14 @@ npm start
 
 Öppna `http://localhost:4200`.
 
+Angulars lokala dev-server proxar `/api` till `http://localhost:5011`. I Azure serverar .NET samma Angular-build och frontend/API använder därför samma domän.
+
 ## Produktionskonfiguration
 
 Production kräver en JWT-hemlighet i miljövariabeln `Jwt__Key`. En riktig hemlighet ska aldrig läggas i Git eller i `appsettings.json`.
+
+Azure App Service ska dessutom använda en persistent SQLite-sökväg:
+
+```text
+ConnectionStrings__DefaultConnection=Data Source=/home/books.db
+```

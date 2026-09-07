@@ -6,7 +6,7 @@ import { Quote, QuoteRequest } from '../models/quote';
 @Injectable({ providedIn: 'root' })
 export class QuoteService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:5011/api/Quotes';
+  private readonly apiUrl = '/api/Quotes';
 
   getQuotes(): Observable<Quote[]> {
     return this.http.get<Quote[]>(this.apiUrl);
