@@ -2,6 +2,10 @@
 
 BookApp är en Angular 20-frontend med ett .NET 9 Web API, SQLite och JWT-autentisering.
 
+## Live
+
+Appen är publicerad på [Azure App Service](https://bokapp-abdirahman-taabit-e0hmegedhkbxh8g4.germanywestcentral-01.azurewebsites.net). Varje push till `main` bygger Angular och .NET och publicerar automatiskt via GitHub Actions.
+
 ## Starta projektet efter kloning
 
 Krav: .NET 9 SDK och Node.js med npm.
