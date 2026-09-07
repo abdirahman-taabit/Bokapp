@@ -1,0 +1,25 @@
+# Angular
+bookapp-client/node_modules/
+bookapp-client/dist/
+bookapp-client/.angular/
+bookapp-client/coverage/
+
+# .NET
+Bookapp.Api/bin/
+Bookapp.Api/obj/
+Bookapp.Api/books.db
+Bookapp.Api/books.db-shm
+Bookapp.Api/books.db-wal
+
+# Local configuration and secrets
+.env
+.env.*
+*.user
+appsettings.Local.json
+
+# IDE and operating system files
+.vs/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

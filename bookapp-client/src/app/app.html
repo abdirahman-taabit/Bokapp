@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary border-bottom" aria-label="Huvudnavigation">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" routerLink="/books">
+      <i class="fa-solid fa-book-open me-2" aria-hidden="true"></i>BookApp
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavigation"
+      aria-controls="mainNavigation"
+      aria-expanded="false"
+      aria-label="Visa eller dölj navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="mainNavigation" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        @if (authService.isLoggedIn()) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/books" routerLinkActive="active">
+              <i class="fa-solid fa-book me-1" aria-hidden="true"></i>Books
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/quotes" routerLinkActive="active">
+              <i class="fa-solid fa-quote-left me-1" aria-hidden="true"></i>Mina citat
+            </a>
+          </li>
+        }
+      </ul>
+
+      <div class="d-flex flex-column flex-md-row gap-2 align-items-md-center">
+        <button class="btn btn-outline-secondary" type="button" (click)="themeService.toggle()">
+          <i
+            class="fa-solid"
+            [class.fa-moon]="themeService.theme === 'light'"
+            [class.fa-sun]="themeService.theme === 'dark'"
+            aria-hidden="true"
+          ></i>
+          {{ themeService.theme === 'light' ? 'Dark mode' : 'Light mode' }}
+        </button>
+
+        @if (authService.isLoggedIn()) {
+          <button class="btn btn-outline-danger" type="button" (click)="authService.logout()">
+            <i class="fa-solid fa-right-from-bracket me-1" aria-hidden="true"></i>Logout
+          </button>
+        } @else {
+          <a class="btn btn-outline-primary" routerLink="/login">
+            <i class="fa-solid fa-right-to-bracket me-1" aria-hidden="true"></i>Login
+          </a>
+          <a class="btn btn-primary" routerLink="/register">
+            <i class="fa-solid fa-user-plus me-1" aria-hidden="true"></i>Register
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</nav>
+
+<main class="container py-4">
+  <router-outlet />
+</main>

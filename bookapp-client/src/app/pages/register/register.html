@@ -1,0 +1,58 @@
+<section class="auth-form mx-auto">
+  <h1 class="mb-4"><i class="fa-solid fa-user-plus me-2" aria-hidden="true"></i>Register</h1>
+
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+  }
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label class="form-label" for="register-username">Username</label>
+      <input
+        id="register-username"
+        class="form-control"
+        type="text"
+        autocomplete="username"
+        formControlName="username"
+      />
+      @if (registerForm.controls.username.touched && registerForm.controls.username.invalid) {
+        <div class="text-danger small mt-1">Username måste innehålla minst 3 tecken.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="register-password">Password</label>
+      <input
+        id="register-password"
+        class="form-control"
+        type="password"
+        autocomplete="new-password"
+        formControlName="password"
+      />
+      @if (registerForm.controls.password.touched && registerForm.controls.password.invalid) {
+        <div class="text-danger small mt-1">Password måste innehålla minst 8 tecken.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="confirm-password">Confirm password</label>
+      <input
+        id="confirm-password"
+        class="form-control"
+        type="password"
+        autocomplete="new-password"
+        formControlName="confirmPassword"
+      />
+      @if (registerForm.controls.confirmPassword.touched && registerForm.controls.confirmPassword.hasError('required')) {
+        <div class="text-danger small mt-1">Confirm password krävs.</div>
+      } @else if (registerForm.controls.confirmPassword.touched && registerForm.hasError('passwordsDoNotMatch')) {
+        <div class="text-danger small mt-1">Lösenorden matchar inte.</div>
+      }
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit" [disabled]="isSubmitting">
+      <i class="fa-solid fa-user-plus me-1" aria-hidden="true"></i>
+      {{ isSubmitting ? 'Registrerar...' : 'Register' }}
+    </button>
+  </form>
+</section>

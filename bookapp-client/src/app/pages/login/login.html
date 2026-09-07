@@ -1,0 +1,45 @@
+<section class="auth-form mx-auto">
+  <h1 class="mb-4"><i class="fa-solid fa-right-to-bracket me-2" aria-hidden="true"></i>Login</h1>
+
+  @if (successMessage) {
+    <div class="alert alert-success" role="status">{{ successMessage }}</div>
+  }
+  @if (errorMessage) {
+    <div class="alert alert-danger" role="alert">{{ errorMessage }}</div>
+  }
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <div class="mb-3">
+      <label class="form-label" for="login-username">Username</label>
+      <input
+        id="login-username"
+        class="form-control"
+        type="text"
+        autocomplete="username"
+        formControlName="username"
+      />
+      @if (loginForm.controls.username.touched && loginForm.controls.username.invalid) {
+        <div class="text-danger small mt-1">Username krävs.</div>
+      }
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label" for="login-password">Password</label>
+      <input
+        id="login-password"
+        class="form-control"
+        type="password"
+        autocomplete="current-password"
+        formControlName="password"
+      />
+      @if (loginForm.controls.password.touched && loginForm.controls.password.invalid) {
+        <div class="text-danger small mt-1">Password krävs.</div>
+      }
+    </div>
+
+    <button class="btn btn-primary w-100" type="submit" [disabled]="isSubmitting">
+      <i class="fa-solid fa-right-to-bracket me-1" aria-hidden="true"></i>
+      {{ isSubmitting ? 'Loggar in...' : 'Login' }}
+    </button>
+  </form>
+</section>
