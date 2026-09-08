@@ -8,7 +8,10 @@ Appen är publicerad på [Azure App Service](https://bokapp-abdirahman-taabit-e0
 
 ## Starta projektet efter kloning
 
-Krav: .NET 9 SDK och Node.js med npm.
+Krav:
+
+- .NET 9 SDK
+- Node.js `20.19+`, `22.12+` eller `24+`, med npm
 
 Starta backend från projektroten:
 
@@ -27,13 +30,32 @@ Starta frontend i en annan terminal:
 
 ```powershell
 cd .\bookapp-client
-npm install
+npm ci
 npm start
 ```
 
 Öppna `http://localhost:4200`.
 
 Angulars lokala dev-server proxar `/api` till `http://localhost:5011`. I Azure serverar .NET samma Angular-build och frontend/API använder därför samma domän.
+
+## Första användning
+
+Registrera en användare och logga sedan in med samma användarnamn och lösenord. Användarnamn är inte skiftlägeskänsliga. Varje ny användare får fem engelska stoiciska standardcitat som går att redigera eller radera. Boklistan är tom tills en användare lägger till den första boken.
+
+## Verifiera projektet
+
+Kör backend-builden från projektroten:
+
+```powershell
+dotnet build .\Bookapp.Api\Bookapp.Api.csproj
+```
+
+Kör frontendens tester och produktionsbuild från `bookapp-client`:
+
+```powershell
+npm test -- --watch=false --browsers=ChromeHeadless
+npm run build
+```
 
 ## Produktionskonfiguration
 

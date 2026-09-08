@@ -20,7 +20,7 @@ describe('BooksComponent', () => {
     component = fixture.componentInstance;
     httpTesting = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
-    httpTesting.expectOne('http://localhost:5011/api/Books').flush([]);
+    httpTesting.expectOne('/api/Books').flush([]);
   });
 
   afterEach(() => httpTesting.verify());
